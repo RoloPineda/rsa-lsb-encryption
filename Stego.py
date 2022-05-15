@@ -76,13 +76,11 @@ def Decode(src, encryption_key, layers):
         else:
             message += chr(int(hidden_bits[i], 2))
     if encryption_key in message:
-        #print("Hidden Message:", message[:-length_key])
 
         encoded_msg = message[:-length_key].encode('latin-1')
         return encoded_msg
 
     else:
-        #print("No Hidden Message Found")
         return "No Hidden Message Found"
 
 def read_encryption_key(key_path):
@@ -101,11 +99,7 @@ def rsa_encrypt(text):
     message = text
     public_key, private_key = rsa.newkeys(512)
     encrypted_message = rsa.encrypt(message.encode(), public_key)
-    #print("Original message: {}".format(message))
-    #print("Encrypted message: {}".format(encrypted_message))
 
-    #decrypted_message = rsa.decrypt(encrypted_message, private_key).decode()
-    #print("Decoded: {}".format(decrypted_message))
     return public_key, private_key, encrypted_message
 
 
