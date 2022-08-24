@@ -179,9 +179,8 @@ def save_private_key(file_path, private_key):
 
 def save_public_key(file_path, public_key):
     """Saves public key to specified file as a pem file"""
-    f = open(file_path, "wb")
-    f.write(public_key.save_pkcs1('PEM'))
-    f.close()
+    with open(file_path, "wb") as f:
+        f.write(public_key.save_pkcs1('PEM'))
     return 0
 
 

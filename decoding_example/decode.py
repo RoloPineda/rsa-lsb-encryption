@@ -12,7 +12,6 @@ def main():
     # decrypt key phrase with private key
     key_phrase = Stego.decrypt_with_private_key(my_private_key, encrypted_key_phrase)
 
-
     # decode text from image
     img_src = "image_with_encoded_text.png"
     decoded_text = Stego.decode(img_src, key_phrase)
