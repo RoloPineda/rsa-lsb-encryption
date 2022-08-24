@@ -12,6 +12,12 @@ An example workflow for encoding a text would be:
 4). Store encrypted key phrase in a binary file to send to recipient
 5). Encode text onto the image
 
+Image before encoding:
+<img src="https://github.com/RoloPineda/rsa-lsb-encryption/blob/master/encoding_example/surfer_in_barrel.png" width=400 height=300>
+
+Image after encoding:
+<img src="https://github.com/RoloPineda/rsa-lsb-encryption/blob/master/encoding_example/image_with_encoded_text.png" width=400 height=300>
+
 See encoding_example\encode.py 
 
 An example workflow for decoding text would be:
