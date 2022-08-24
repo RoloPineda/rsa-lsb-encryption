@@ -1,4 +1,4 @@
-import Stego
+import stego
 
 
 def main():
