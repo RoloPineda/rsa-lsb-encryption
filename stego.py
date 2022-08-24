@@ -7,12 +7,13 @@ np.set_printoptions(threshold=sys.maxsize)
 
 
 def encode(key_phrase, src, message, dest):
-    """This function encodes text onto an image.
-        str key_phrase : it indicates to the compiler where the end of the encoded message is
-        str src : source image to utilize to encode message, must be png
-        str message : message to encode onto an image
-        str dest : name of the resulting image that contains the encoded message, must include .png at the end
-        """
+    """
+    This function encodes text onto an image.
+    str key_phrase : it indicates to the compiler where the end of the encoded message is
+    str src : source image to utilize to encode message, must be png
+    str message : message to encode onto an image
+    str dest : name of the resulting image that contains the encoded message, must include .png at the end
+    """
     img = Image.open(src, 'r')
     width, height = img.size
     array = np.array(list(img.getdata()))
@@ -53,10 +54,12 @@ def encode(key_phrase, src, message, dest):
 
 
 def decode(src, key_phrase):
-    """This function decodes the text hidden in an image.
-        str src : the path of the image containing the encoded message, must be .png and include the extension
-        str key_phrase : the phrase that indicates the end of the encoded message has been reached
-        returns str encoded message"""
+    """
+    This function decodes the text hidden in an image.
+    str src : the path of the image containing the encoded message, must be .png and include the extension
+    str key_phrase : the phrase that indicates the end of the encoded message has been reached
+    returns str encoded message
+    """
     img = Image.open(src, 'r')
     array = np.array(list(img.getdata()))
 
@@ -93,8 +96,10 @@ def decode(src, key_phrase):
 
 
 def read_key_phrase(key_path):
-    """Reads the key phrase from a txt file
-    str key_path : path to the file containing the key phrase"""
+    """
+    Reads the key phrase from a txt file
+    str key_path : path to the file containing the key phrase
+    """
     try:
         with open(key_path, 'r') as f:
             lines = f.read()
@@ -119,9 +124,11 @@ def save_encrypted_key_phrase(file_path, encrypted_key_phrase):
 
 
 def generate_rsa_key(n):
-    """Generates public and private keys
+    """
+    Generates public and private keys
     int n : key size
-    returns public and private key"""
+    returns public and private key
+    """
     public_key, private_key = rsa.newkeys(n)
     return public_key, private_key
 
@@ -143,7 +150,8 @@ def rsa_encrypt(text, key):
 def load_private_key(private_key_file):
     """Loads private key from file.
     str private_key_file : path to pem or der file
-    returns private key object"""
+    returns private key object
+    """
     with open(private_key_file, mode='rb') as private_file:
         key_data = private_file.read()
     private_key = rsa.PrivateKey.load_pkcs1(key_data)
@@ -154,7 +162,8 @@ def load_private_key(private_key_file):
 def load_public_key(public_key_file):
     """Loads public key from file.
     str private_key_file : path to pem or der file
-    returns public key object"""
+    returns public key object
+    """
     with open(public_key_file, mode='rb') as public_file:
         key_data = public_file.read()
     public_key = rsa.PublicKey.load_pkcs1(key_data)
@@ -177,12 +186,12 @@ def save_public_key(file_path, public_key):
 
 
 def decrypt_with_private_key(private_key, encrypted_message):
-    """Decrypts text with private key object """
+    """Decrypts text with private key object"""
     decrypted_message = decrypted_message = rsa.decrypt(encrypted_message, private_key).decode()
     return decrypted_message
 
 
 def decrypt_with_public_key(public_key, encrypted_message):
-    """Decrypts text with public key object """
+    """Decrypts text with public key object"""
     decrypted_message = decrypted_message = rsa.decrypt(encrypted_message, public_key).decode()
     return decrypted_message
