@@ -26,7 +26,7 @@ def encode(key_phrase, src, message, dest):
         sys.exit("Not a compatible image. Try again")
 
     total_pixels = array.size // n
-    if type(key_phrase) == bytes:
+    if type(key_phrase) is bytes:
         key_phrase = key_phrase.decode('latin-1')
     message += key_phrase
 
@@ -89,10 +89,9 @@ def decode(src, key_phrase):
             message += chr(int(hidden_bits[i], 2))
     if key_phrase in message:
         encoded_msg = message[:-length_key].encode('latin-1')
-        return encoded_msg
-
     else:
-        return "No Hidden Message Found"
+        encoded_msg = "No Hidden Message Found"
+    return encoded_msg
 
 
 def read_key_phrase(key_path):
